@@ -92,7 +92,11 @@ class AuthTest extends TestCase
 
         $user = User::factory()->createOne();
 
+        $user->createToken('API');
+
         $response = $this->actingAs($user)->post('/api/auth/logout');
+
+        $this->assertFalse($user->tokens()->exists());
 
         $response
             ->assertNoContent();
