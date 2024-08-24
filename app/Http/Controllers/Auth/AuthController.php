@@ -47,6 +47,6 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json([], Response::HTTP_NO_CONTENT);
+        return response()->noContent();
     }
 }
