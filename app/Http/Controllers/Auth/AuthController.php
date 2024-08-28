@@ -18,10 +18,14 @@ class AuthController extends Controller
     {
         $user = User::create($request->validated());
 
+        $user->profile()->create([
+            'avatar' => 'avatar-3814049_1280.png'
+        ]);
+
         Auth::login($user);
 
         return response()->json([
-            'user' => $user,
+            'user' => $user->load('profile'),
             'token' => $user->createToken('API')->plainTextToken,
         ], Response::HTTP_CREATED);
     }
