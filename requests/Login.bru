@@ -1,0 +1,22 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://127.0.0.1:8000/api/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+body:json {
+  {
+    "email": "alieldeba375@gmail.com",
+    "password": "123456"
+  }
+}

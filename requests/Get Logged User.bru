@@ -1,0 +1,15 @@
+meta {
+  name: Get Logged User
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://127.0.0.1:8000/api/user
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: 5|xvdzQTMtsDPMxE52Tlwaz7zHYtT7ExFnSt3uSolf5d66d433
+}

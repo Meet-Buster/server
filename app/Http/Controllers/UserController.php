@@ -23,16 +23,19 @@ class UserController extends Controller
             ]);
         }
 
-        if(isset($userData['avatar'])){
-            $imageName = time().'.'.$userData['avatar']->extension();
-            $userData['avatar']->move(Storage::put('profile'), $imageName);
+        if (isset($userData['avatar'])) {
+            // $imageName = time() . '.' . $userData['avatar']->extension();
+            $imageName = $userData['avatar']->store('profile', 'public');
+            $userData['avatar'] = $imageName;
 
-            if($user->profile->avatar !== 'avatar-3814049_1280.png'){
+            if ($user->profile->avatar !== 'avatar-3814049_1280.png') {
                 Storage::delete('profile/' . $user->profile->avatar);
             }
         }
 
-        $user->profile()->update($userData);
+        $user->profile()->update(collect($userData)->only(['avatar'])->all());
+
+        $user->profile->refresh();
 
         return response()->json([
             'user' => $user

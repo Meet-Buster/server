@@ -18,6 +18,6 @@ class UserProfile extends Model
 
     public function getAvatarAttribute($value)
     {
-        return asset('storage/profile/' . $value);
+        return asset('storage/' . $value);
     }
 }
